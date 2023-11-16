@@ -11,7 +11,7 @@ Entre sus funcionalidad esta:
 
 Se diseño una maqueta de la interfaz de la aplicativo en figma.
 
-![Escritorio](./src/assets/desktop-screen.png)
+![Escritorio](./src/assets/build/img/png/desktop-screen.png)
 
 ## Install package
 
