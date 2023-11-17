@@ -1,14 +1,21 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-bg" style="padding-left: 30px; padding-right: 30px;">
+  <div class="container-fluid d-flex justify-content-between" style="gap: 10px;">
+    <div class="d-flex align-items-center">
+      <img src="../../../assets/build/img/png/cloudy-logo.png" alt="cloudy-logo" width="30" style="margin-right: 5px;">
+      <h3 class="mb-0 mt-1">WeatherApp</h3>
+    </div>
+    <button class="navbar-toggler button-search" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+      <span>
+        <img src="../../../assets/build/img/svg/search-icon.svg" alt="search icon">
+      </span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+    <div class="input-group collapse navbar-collapse" id="navbarToggler" style="width: fit-content; flex-grow: 0;">
+      <input type="text" class="form-control search-input" placeholder="Give me a country or city" aria-label="Recipient's username" aria-describedby="button-addon2" #placeToSearch>
+      <button class="btn btn-outline-secondary button-search" type="button" id="button-addon2" (click)="emitSearch()">
+        <span>
+          <img src="../../../assets/build/img/svg/search-icon.svg" alt="search icon">
+        </span>
+      </button>
     </div>
   </div>
 </nav>

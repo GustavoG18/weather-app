@@ -1,0 +1,16 @@
+.search-input {
+  width: 500px;
+  max-width: 500px;
+}
+
+.button-search {
+  background-color: white;
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.navbar-bg {
+  background-color: #8540F5 !important;
+  color: #FFFFFF
+}
