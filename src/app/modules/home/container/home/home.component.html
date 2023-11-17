@@ -1,11 +1,12 @@
-<div class="d-flex align-items-center" style="margin-top: 20px;">
+<!-- <div class="d-flex align-items-center" style="margin-top: 20px;" *ngIf="valueToSearch.name">
   <span>
     <img
-    src="https://flagcdn.com/{{countryCode}}.svg"
+    src="https://flagcdn.com/{{valueToSearch.codeFlag}}.svg"
     width="50"
     alt="country flag"
     style="border-radius: 100%; margin-left: 40px; width: 32px; height: 32px;margin-right: 10px;"
     >
   </span>
-  <h1 class="text-capitalize" style="margin-bottom: 0;">{{city}}</h1>
-</div>
+  <h1 class="text-capitalize" style="margin-bottom: 0;">{{valueToSearch.name}}</h1>
+</div> -->
+<app-google-map></app-google-map>

@@ -1,0 +1,4 @@
+<app-map *ngIf="!loading; else skeleton"></app-map>
+<ng-template #skeleton>
+  <app-skeleton-map></app-skeleton-map>
+</ng-template>

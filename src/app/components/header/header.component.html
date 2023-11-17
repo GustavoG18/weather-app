@@ -10,12 +10,7 @@
       </span>
     </button>
     <div class="input-group collapse navbar-collapse" id="navbarToggler" style="width: fit-content; flex-grow: 0;">
-      <input type="text" class="form-control search-input" placeholder="Give me a country or city" aria-label="Recipient's username" aria-describedby="button-addon2" #placeToSearch>
-      <button class="btn btn-outline-secondary button-search" type="button" id="button-addon2" (click)="emitSearch()">
-        <span>
-          <img src="../../../assets/build/img/svg/search-icon.svg" alt="search icon">
-        </span>
-      </button>
+      <input id="autocomplete-input" type="text" class="form-control search-input" placeholder="Give me a country or city" aria-label="Recipient's username" aria-describedby="button-addon2">
     </div>
   </div>
 </nav>
