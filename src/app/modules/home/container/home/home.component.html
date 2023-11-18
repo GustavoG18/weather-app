@@ -1,13 +1,27 @@
-<div id="container-home" class="container mt-5">
-  <div class="col">
-    <app-title [codeFlag]="valueToSearch.codeFlag" [name]="valueToSearch.name"></app-title>
-    <div class="row mt-5">
-      <div class="col-6">
-        <app-accordion-container [place]="valueToSearch.name"></app-accordion-container>
+<div class="container mt-5" *ngIf="firstCall; else initialView">
+  haz la primera busqueda
+</div>
+<ng-template #initialView>
+  <div class="container mt-5" *ngIf="weather$ | async as weather">
+    <div class="col-12">
+      <div class="row">
+        <div class="d-flex align-items-center">
+          <span>
+            <img
+            src="https://flagcdn.com/{{weather.city.country | lowercase}}.svg"
+            width="50"
+            alt="country flag"
+            style="border-radius: 100%; width: 32px; height: 32px;margin-right: 10px;"
+            >
+          </span>
+          <h1 class="text-capitalize" style="margin-bottom: 0;">{{weather.city.name}}</h1>
+        </div>
       </div>
-      <div class="col-6 justify-content-end d-flex">
-        <app-google-map style="display: block; width: fit-content;"></app-google-map>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <app-map [placeName]="weather.city.name" [lat]="weather.city.coord.lat" [lon]="weather.city.coord.lon"></app-map>
       </div>
     </div>
   </div>
-</div>
+</ng-template>

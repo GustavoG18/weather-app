@@ -3,20 +3,17 @@ import { CommonModule } from '@angular/common'
 
 import { HomeRoutingModule } from './home-routing.module'
 import { HomeComponent } from './container/home/home.component'
-import { GoogleMapModule } from './components/google-map/google-map.module'
-import { TitleComponent } from './components/title/title.component'
-import { AccordionContainerModule } from './components/accordion-container/accordion-container.module'
+import { MapComponent } from './components/map/map.component'
+// import { AccordionContainerModule } from './components/accordion-container/accordion-container.module'
 
 @NgModule({
   declarations: [
     HomeComponent,
-    TitleComponent
+    MapComponent
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,
-    GoogleMapModule,
-    AccordionContainerModule
+    HomeRoutingModule
   ]
 })
 export class HomeModule { }

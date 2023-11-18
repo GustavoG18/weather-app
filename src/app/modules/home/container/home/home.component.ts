@@ -1,32 +1,31 @@
-// import { HttpResponse } from '@angular/common/http'
 import { Component } from '@angular/core'
-import { DataShareService } from 'src/app/services/data-share.service'
-import { EmitValueInput } from 'src/app/core/types'
-// import { HeadResponse, WeatherApiServiceService } from 'src/app/services/weather-api.service.service'
+import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs'
+import { WeatherModel } from 'src/app/core/models/weather.model'
+import { AppState } from 'src/app/state/app.state'
+import { selectListWeather } from 'src/app/state/selectors/weather.selector'
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  public valueToSearch: EmitValueInput = {
-    codeFlag: '',
-    name: '',
-    lat: 0,
-    lng: 0
+  public weather$: Observable<WeatherModel> = new Observable()
+  public firstCall: boolean = true
+
+  constructor (private readonly store: Store<AppState>) {}
+
+  ngOnInit (): void {
+    this.weather$ = this.store.select(selectListWeather)
+    this.weather$.subscribe((response: WeatherModel) => {
+      this.isFirstCall(response)
+    })
   }
 
-  constructor (private readonly dataShareService: DataShareService) {
-    dataShareService.dataShared.subscribe(({ codeFlag, ...rest }) => {
-      this.valueToSearch = {
-        codeFlag: codeFlag.toLocaleLowerCase(),
-        ...rest
-      }
-      // this.weatherService.statusRequest(this.city).subscribe((response: HttpResponse<HeadResponse>) => {
-      //   if (response.status === 200) {
-      //     this.weatherService.weatherRequest(this.city).subscribe((response: any) => { console.log({ response }) })
-      //   }
-      // })
-    })
+  isFirstCall (currentWeather: WeatherModel): void {
+    if (currentWeather.list.length > 0) {
+      this.firstCall = false
+    }
   }
 }
