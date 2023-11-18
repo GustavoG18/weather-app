@@ -1,8 +1,10 @@
-<div class="container mt-5">
+<div id="container-home" class="container mt-5">
   <div class="col">
     <app-title [codeFlag]="valueToSearch.codeFlag" [name]="valueToSearch.name"></app-title>
     <div class="row mt-5">
-      <div class="col-6"></div>
+      <div class="col-6">
+        <app-accordion-container [place]="valueToSearch.name"></app-accordion-container>
+      </div>
       <div class="col-6 justify-content-end d-flex">
         <app-google-map style="display: block; width: fit-content;"></app-google-map>
       </div>

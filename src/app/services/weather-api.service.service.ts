@@ -1,16 +1,9 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http'
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { environment } from 'src/environments/environment.dev'
 import { Endpoints } from '../core/endpoints'
-
-export interface HeadResponse {
-  headers: HttpHeaders
-  status: number
-  statusText: string
-  ok: boolean
-  url: string
-}
+import { HeadResponse, WeatherResponse } from '../core/types'
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +16,9 @@ export class WeatherApiServiceService {
     return this.http.head<HeadResponse>(Endpoints.WEATHER_API, { params, observe: 'response' })
   }
 
-  weatherRequest (name: string): Observable<any> {
+  weatherRequest (name: string): Observable<HttpResponse<WeatherResponse>> {
     const params = this.requiredParams(name)
-    return this.http.get(Endpoints.WEATHER_API, { params, observe: 'response' })
+    return this.http.get<WeatherResponse>(Endpoints.WEATHER_API, { params, observe: 'response' })
   }
 
   requiredParams (name: string): HttpParams {
