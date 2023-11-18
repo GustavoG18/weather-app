@@ -1,12 +1,11 @@
-<!-- <div class="d-flex align-items-center" style="margin-top: 20px;" *ngIf="valueToSearch.name">
-  <span>
-    <img
-    src="https://flagcdn.com/{{valueToSearch.codeFlag}}.svg"
-    width="50"
-    alt="country flag"
-    style="border-radius: 100%; margin-left: 40px; width: 32px; height: 32px;margin-right: 10px;"
-    >
-  </span>
-  <h1 class="text-capitalize" style="margin-bottom: 0;">{{valueToSearch.name}}</h1>
-</div> -->
-<app-google-map></app-google-map>
+<div class="container mt-5">
+  <div class="col">
+    <app-title [codeFlag]="valueToSearch.codeFlag" [name]="valueToSearch.name"></app-title>
+    <div class="row mt-5">
+      <div class="col-6"></div>
+      <div class="col-6 justify-content-end d-flex">
+        <app-google-map style="display: block; width: fit-content;"></app-google-map>
+      </div>
+    </div>
+  </div>
+</div>

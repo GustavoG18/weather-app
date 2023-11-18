@@ -1,7 +1,7 @@
 // import { HttpResponse } from '@angular/common/http'
 import { Component } from '@angular/core'
 import { DataShareService } from 'src/app/services/data-share.service'
-import { EmitValueInput } from 'src/app/utils/types'
+import { EmitValueInput } from 'src/app/core/types'
 // import { HeadResponse, WeatherApiServiceService } from 'src/app/services/weather-api.service.service'
 @Component({
   selector: 'app-home',
