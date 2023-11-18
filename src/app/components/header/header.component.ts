@@ -1,8 +1,11 @@
 import { Component } from '@angular/core'
-import { DataShareService } from 'src/app/services/data-share.service'
 import { Loader } from '@googlemaps/js-api-loader'
 import { environment } from 'src/environments/environment.dev'
-import { AddressComponent, EmitValueInput } from 'src/app/core/types'
+import { AutocompleteValue } from 'src/app/core/types'
+import { Store } from '@ngrx/store'
+import { loadWeather, loadedWeather } from 'src/app/state/actions/weather.actions'
+import { WeatherApiServiceService } from 'src/app/services/weather-api.service.service'
+import { WeatherModel } from 'src/app/core/models/weather.model'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -20,7 +23,10 @@ export class HeaderComponent {
     types: ['(regions)']
   }
 
-  constructor (private readonly dataShareService: DataShareService) {}
+  constructor (
+    private readonly weatherApiService: WeatherApiServiceService,
+    private readonly store: Store<any>
+  ) {}
 
   ngAfterViewInit (): void {
     const input = document.getElementById('autocomplete-input') as HTMLInputElement
@@ -30,21 +36,25 @@ export class HeaderComponent {
 
   private onPlaceChanged (): void {
     const place = this.autocomplete.getPlace()
-    // console.log(place.geometry.location.lat(), place.geometry.location.lng())
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (place.address_components) {
-      const countryComponent = (place.address_components as AddressComponent[]).find(
-        (component: AddressComponent) => component.types.includes('country')
-      )
-      const shortName = (countryComponent != null) ? countryComponent.short_name : null
-      this.emitSearch({
-        codeFlag: shortName ?? '', name: place.formatted_address, lat: place.geometry.location.lat(), lng: place.geometry.location.lng()
-      })
-    }
+    this.saveInformation({
+      place: place.name,
+      lat: place.geometry.location.lat(),
+      lon: place.geometry.location.lng()
+    })
   }
 
-  emitSearch (value: EmitValueInput): void {
-    this.dataShareService.emitData(value)
-    this.dataShareService.setSkeletonStatus(false)
+  saveInformation (value: AutocompleteValue): void {
+    this.store.dispatch(loadWeather())
+    this.weatherApiService.weatherRequest(value).subscribe(({ city, ...rest }: WeatherModel) => {
+      this.store.dispatch(loadedWeather({
+        weather: {
+          city: {
+            ...city,
+            name: value.place
+          },
+          ...rest
+        }
+      }))
+    })
   }
 }
