@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Loader } from '@googlemaps/js-api-loader'
 import { DataShareService } from 'src/app/services/data-share.service'
-import { EmitValueInput } from 'src/app/utils/types'
+import { EmitValueInput } from 'src/app/core/types'
 import { environment } from 'src/environments/environment.dev'
 
 @Component({
@@ -36,7 +36,7 @@ export class MapComponent implements OnInit {
           const { Map } = await google.maps.importLibrary('maps') as google.maps.MapsLibrary
           this.map = new Map(document.getElementById('map') as HTMLElement, {
             center: { lat: this.valueToSearch.lat, lng: this.valueToSearch.lng },
-            zoom: 5,
+            zoom: 6,
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
