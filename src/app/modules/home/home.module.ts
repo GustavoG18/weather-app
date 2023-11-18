@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-
 import { HomeRoutingModule } from './home-routing.module'
 import { HomeComponent } from './container/home/home.component'
 import { MapComponent } from './components/map/map.component'
-// import { AccordionContainerModule } from './components/accordion-container/accordion-container.module'
+import { AccordionComponent } from './components/accordion/accordion.component'
+import { FormsModule } from '@angular/forms'
+import { WeatherContainerComponent } from './components/weather-container/weather-container.component'
 
 @NgModule({
   declarations: [
     HomeComponent,
-    MapComponent
+    MapComponent,
+    AccordionComponent,
+    WeatherContainerComponent
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

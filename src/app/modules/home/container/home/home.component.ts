@@ -24,7 +24,7 @@ export class HomeComponent {
   }
 
   isFirstCall (currentWeather: WeatherModel): void {
-    if (currentWeather.list.length > 0) {
+    if (currentWeather.weatherByDays.length > 0) {
       this.firstCall = false
     }
   }

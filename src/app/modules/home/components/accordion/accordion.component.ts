@@ -1,14 +1,25 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core'
+import { Component, Input } from '@angular/core'
+import { Store } from '@ngrx/store'
+import { WeatherModel } from 'src/app/core/models/weather.model'
+import { loadedWeather } from 'src/app/state/actions/weather.actions'
+import { AppState } from 'src/app/state/app.state'
+import { emptyWeatherModel } from 'src/app/state/reducers/weather.reducers'
+import { reverseData } from '../../../../utils/utils'
 
 @Component({
   selector: 'app-accordion',
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss']
 })
-export class AccordionComponent implements OnChanges {
-  @Input() dataAccordion: any[] = []
+export class AccordionComponent {
+  @Input() weather: WeatherModel = emptyWeatherModel
+  public selectedOption: string = 'Asc'
 
-  ngOnChanges (changes: SimpleChanges): void {
-    console.log(changes)
+  constructor (private readonly store: Store<AppState>) {}
+
+  changeOrder (): void {
+    const cloneWeather: WeatherModel = { ...this.weather }
+    cloneWeather.weatherByDays = reverseData(cloneWeather.weatherByDays)
+    this.store.dispatch(loadedWeather({ weather: cloneWeather }))
   }
 }

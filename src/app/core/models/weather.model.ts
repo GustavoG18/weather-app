@@ -1,11 +1,16 @@
-export interface WeatherModel {
+export interface WeatherResponseApi {
   city: City
   cnt: number
   cod: string
   list: List[]
   message: number
+  searchName?: string
 }
 
+export interface WeatherModel {
+  city: City
+  weatherByDays: List[][]
+}
 export interface City {
   coord: Coord
   country: string
@@ -56,7 +61,7 @@ export interface Rain {
 }
 
 export interface Sys {
-  pod: Pod
+  pod: string
 }
 
 export enum Pod {
@@ -65,10 +70,10 @@ export enum Pod {
 }
 
 export interface Weather {
-  description: Description
+  description: string
   icon: string
   id: number
-  main: MainEnum
+  main: string
 }
 
 export enum Description {

@@ -18,8 +18,11 @@
         </div>
       </div>
     </div>
-    <div class="col-12">
-      <div class="row">
+    <div class="row">
+      <div class="col-6">
+        <app-accordion [weather]="weather"></app-accordion>
+      </div>
+      <div class="col-6">
         <app-map [placeName]="weather.city.name" [lat]="weather.city.coord.lat" [lon]="weather.city.coord.lon"></app-map>
       </div>
     </div>

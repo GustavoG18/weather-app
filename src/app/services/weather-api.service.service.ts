@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 import { environment } from 'src/environments/environment.dev'
 import { Endpoints } from '../core/endpoints'
 import { HeadResponse } from '../core/types'
-import { WeatherModel } from '../core/models/weather.model'
+import { WeatherResponseApi } from '../core/models/weather.model'
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,9 @@ export class WeatherApiServiceService {
   weatherRequest (coord: {
     lat: number
     lon: number
-  }): Observable<WeatherModel> {
-    const URL = `${Endpoints.WEATHER_API}?lat=${coord.lat}&lon=${coord.lon}&appid=${environment.API_WEATHER_KEY}`
-    return this.http.get<WeatherModel>(URL)
+  }): Observable<WeatherResponseApi> {
+    const URL = `${Endpoints.WEATHER_API}?lat=${coord.lat}&lon=${coord.lon}&appid=${environment.API_WEATHER_KEY}&units=metric`
+    return this.http.get<WeatherResponseApi>(URL)
   }
 
   requiredParams (name: string): HttpParams {
