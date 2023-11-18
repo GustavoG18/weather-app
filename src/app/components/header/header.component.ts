@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { DataShareService } from 'src/app/services/data-share.service'
 import { Loader } from '@googlemaps/js-api-loader'
 import { environment } from 'src/environments/environment.dev'
-import { AddressComponent, EmitValueInput } from 'src/app/utils/types'
+import { AddressComponent, EmitValueInput } from 'src/app/core/types'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
