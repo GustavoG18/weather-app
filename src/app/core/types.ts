@@ -5,11 +5,10 @@ export interface AddressComponent {
   types: string[]
 }
 
-export interface EmitValueInput {
-  codeFlag: string
-  name: string
+export interface AutocompleteValue {
+  place: string
   lat: number
-  lng: number
+  lon: number
 }
 
 export interface HeadResponse {
