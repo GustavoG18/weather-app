@@ -21,7 +21,7 @@ export class WeatherApiServiceService {
     lat: number
     lon: number
   }): Observable<WeatherResponseApi> {
-    const URL = `${Endpoints.WEATHER_API}?lat=${coord.lat}&lon=${coord.lon}&appid=${environment.API_WEATHER_KEY}&units=metric`
+    const URL = `${Endpoints.WEATHER_API}?lat=${coord.lat}&lon=${coord.lon}&appid=${environment.API_WEATHER_KEY}&units=metric&lang=es`
     return this.http.get<WeatherResponseApi>(URL)
   }
 

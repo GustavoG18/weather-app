@@ -1,0 +1,21 @@
+@mixin breakpoint($size) {
+  @if $size == small {
+    @media (min-width: 300px) { @content; }
+  } @else if $size == medium {
+    @media (min-width: 400px) { @content; }
+  } @else if $size == large {
+    @media (min-width: 650px) { @content; }
+  }
+}
+
+.height-main-container {
+  @include breakpoint(small) {
+    height: 240vh;
+  }
+  @include breakpoint(medium) {
+    height: 200vh;
+  }
+  @include breakpoint(large) {
+    height: 100vh;
+  }
+}

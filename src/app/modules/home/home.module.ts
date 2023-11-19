@@ -6,6 +6,7 @@ import { MapComponent } from './components/map/map.component'
 import { AccordionComponent } from './components/accordion/accordion.component'
 import { FormsModule } from '@angular/forms'
 import { WeatherContainerComponent } from './components/weather-container/weather-container.component'
+import { ChartModule } from 'primeng/chart'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { WeatherContainerComponent } from './components/weather-container/weathe
   imports: [
     CommonModule,
     HomeRoutingModule,
-    FormsModule
+    FormsModule,
+    ChartModule
   ]
 })
 export class HomeModule { }

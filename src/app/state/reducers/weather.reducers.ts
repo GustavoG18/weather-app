@@ -14,10 +14,7 @@ export const emptyWeatherModel: WeatherModel = {
     sunset: 0,
     timezone: 0
   },
-  cnt: 0,
-  cod: '',
-  list: [],
-  message: 0
+  weatherByDays: []
 }
 
 export const initialState: WeatherState = {
