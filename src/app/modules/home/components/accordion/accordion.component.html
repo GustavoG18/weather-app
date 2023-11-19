@@ -1,19 +1,34 @@
 <div class="container">
-  <div class="col">
-    <select class="form-select mb-5 mt-5" [(ngModel)]="selectedOption" (change)="changeOrder()">
-      <option value="Asc" selected>Ascendent</option>
-      <option value="Desc">Descendent</option>
-    </select>
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item" *ngFor="let item of weather.weatherByDays; let i = index">
-        <h2 class="accordion-header" id="heading{{i}}">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="i == 0 ? 'true' : 'false'" [attr.aria-controls]="'collapse' + i">
-            Day {{ item[0].dt_txt.toString().split(' ')[2] }}
-          </button>
-        </h2>
-        <div [id]="'collapse' + i" class="accordion-collapse collapse" [class.show]="i == 0" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <app-weather-container [weather]="item"></app-weather-container>
+  <div class="row">
+    <div class="col-md-12 p-0">
+      <select class="form-select mb-2 mt-5" [(ngModel)]="selectedOption" (change)="changeOrder()">
+        <option value="Asc" selected>Ascendent</option>
+        <option value="Desc">Descendent</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 p-0">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item" *ngFor="let item of weather.weatherByDays; let i = index">
+          <h2 class="accordion-header" id="heading{{i}}">
+            <button
+              class="accordion-button"
+              [ngClass]="{'collapsed': i !== openIndex}"
+              type="button"
+              data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#collapse' + i"
+              [attr.aria-expanded]="i === openIndex"
+              [attr.aria-controls]="'collapse' + i"
+              (click)="changeIndex(i)"
+            >
+              Fecha: {{ item[0].dt_txt.toString().split(' ')[0] }}
+            </button>
+          </h2>
+          <div [id]="'collapse' + i" class="accordion-collapse collapse"  [ngClass]="{'show': i === openIndex}" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <app-weather-container [weather]="item"></app-weather-container>
+            </div>
           </div>
         </div>
       </div>

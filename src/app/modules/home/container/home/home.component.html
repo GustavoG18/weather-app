@@ -1,30 +1,48 @@
-<div class="container mt-5" *ngIf="firstCall; else initialView">
-  haz la primera busqueda
-</div>
-<ng-template #initialView>
-  <div class="container mt-5" *ngIf="weather$ | async as weather">
+<div class="container" *ngIf="firstCall; else initialView" style="margin-top: 20%;">
+  <div class="row">
     <div class="col-12">
-      <div class="row">
-        <div class="d-flex align-items-center">
+      <h2>Busca una ciudad o un pais</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <input id="autocomplete-input-main" type="text" class="form-control search-input" placeholder="Type a country or city" aria-label="place to search">
+    </div>
+  </div>
+</div>
+
+<ng-template #initialView>
+  <div class="container" *ngIf="weather$ | async as weather">
+
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="d-flex flex-row align-items-center">
           <span>
             <img
             src="https://flagcdn.com/{{weather.city.country | lowercase}}.svg"
             width="50"
             alt="country flag"
-            style="border-radius: 100%; width: 32px; height: 32px;margin-right: 10px;"
+            class="img-flag"
             >
           </span>
-          <h1 class="text-capitalize" style="margin-bottom: 0;">{{weather.city.name}}</h1>
+          <h1 class="text-capitalize mb-0">{{weather.city.name}}</h1>
         </div>
       </div>
     </div>
+
     <div class="row">
-      <div class="col-6">
+      <div class="col-md-6">
         <app-accordion [weather]="weather"></app-accordion>
       </div>
-      <div class="col-6">
-        <app-map [placeName]="weather.city.name" [lat]="weather.city.coord.lat" [lon]="weather.city.coord.lon"></app-map>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-10 ms-auto mt-5">
+            <div style="width: 100%; height: 300px; background-color: #8540F5;border-radius: 50px; margin-left: auto;margin-bottom: 20px;"></div>
+            <app-map [placeName]="weather.city.name" [lat]="weather.city.coord.lat" [lon]="weather.city.coord.lon"></app-map>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </ng-template>

@@ -14,6 +14,7 @@ import { reverseData } from '../../../../utils/utils'
 export class AccordionComponent {
   @Input() weather: WeatherModel = emptyWeatherModel
   public selectedOption: string = 'Asc'
+  public openIndex: number = 0
 
   constructor (private readonly store: Store<AppState>) {}
 
@@ -21,5 +22,9 @@ export class AccordionComponent {
     const cloneWeather: WeatherModel = { ...this.weather }
     cloneWeather.weatherByDays = reverseData(cloneWeather.weatherByDays)
     this.store.dispatch(loadedWeather({ weather: cloneWeather }))
+  }
+
+  changeIndex (index: number): void {
+    this.openIndex = index
   }
 }
