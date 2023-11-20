@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 p-0">
-      <select class="form-select mb-2 mt-5" [(ngModel)]="selectedOption" (change)="changeOrder()" [value]="selectedOption">
+      <select class="form-select mb-2 mt-5" [(ngModel)]="selectedOption" (change)="changeOrder()">
         <option value="Asc" selected>Ascendent</option>
         <option value="Desc">Descendent</option>
       </select>
@@ -22,7 +22,7 @@
               [attr.aria-controls]="'collapse' + i"
               (click)="changeIndex(i)"
             >
-              Fecha: {{ item[0].dt_txt.toString().split(' ')[0] }}
+              {{ formatDayLabel(item[0].dt_txt) }}
             </button>
           </h2>
           <div [id]="'collapse' + i" class="accordion-collapse collapse"  [ngClass]="{'show': i === openIndex}" data-bs-parent="#accordionExample">

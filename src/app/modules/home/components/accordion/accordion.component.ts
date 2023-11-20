@@ -4,7 +4,7 @@ import { WeatherModel } from 'src/app/core/models/weather.model'
 import { loadedWeather } from 'src/app/state/actions/weather.actions'
 import { AppState } from 'src/app/state/app.state'
 import { emptyWeatherModel } from 'src/app/state/reducers/weather.reducers'
-import { reverseData } from '../../../../utils/utils'
+import { getDayName, reverseData } from '../../../../utils/utils'
 
 @Component({
   selector: 'app-accordion',
@@ -26,5 +26,10 @@ export class AccordionComponent {
 
   changeIndex (index: number): void {
     this.openIndex = index
+  }
+
+  formatDayLabel (date: Date): string {
+    const dateFormat = new Date(date.toString())
+    return `${getDayName(dateFormat)} ${dateFormat.getDate()}`
   }
 }

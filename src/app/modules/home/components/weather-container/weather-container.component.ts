@@ -24,7 +24,7 @@ export class WeatherContainerComponent implements OnChanges {
         labels,
         datasets: [
           {
-            label: 'Temperatura en °C',
+            label: 'Temperature °C',
             data: this.data,
             fill: true,
             borderColor: documentStyle.getPropertyValue('--blue-500'),
@@ -66,5 +66,9 @@ export class WeatherContainerComponent implements OnChanges {
         }
       }
     }
+  }
+
+  roundNumber (number: number): number {
+    return Math.round(number)
   }
 }

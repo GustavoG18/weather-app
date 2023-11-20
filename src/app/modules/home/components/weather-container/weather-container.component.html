@@ -4,21 +4,21 @@
       <div class="d-flex flex-row align-items-center">
         <img class="me-2 img-weather" src="../../../../../assets/build/img/png/cloudy-logo.png" alt="img"/>
         <div class="d-flex flex-row">
-          <p class="font-size-2">{{weather[0].main.temp}}</p>
+          <p class="font-size-2">{{roundNumber(weather[0].main.temp)}}</p>
           <p class="font-size-1">°C</p>
         </div>
       </div>
       <div class="d-flex flex-column">
-        <p class="font-size-0-8">Humedad: {{weather[0].main.humidity}}%</p>
+        <p class="font-size-0-8">Humidity: {{roundNumber(weather[0].main.humidity)}}%</p>
         <div class="d-flex flex-row">
-          <p class="font-size-0-8">Sensacion termica: {{weather[0].main.feels_like}}</p>
+          <p class="font-size-0-8">Thermal sensation: {{roundNumber(weather[0].main.feels_like)}}</p>
           <p class="font-size-0-5">°C</p>
         </div>
-        <p class="font-size-0-8">P. Atmosferica: {{weather[0].main.pressure}} hPa</p>
+        <p class="font-size-0-8">P. Atmospheric: {{roundNumber(weather[0].main.pressure)}} hPa</p>
       </div>
     </div>
     <div class="col-6 d-flex flex-column p-0">
-      <p class="font-size-2 text-end">Clima</p>
+      <p class="font-size-2 text-end">Weather</p>
       <p class="font-size-0-8 text-end">{{weather[0].weather[0].description}}</p>
     </div>
   </div>
