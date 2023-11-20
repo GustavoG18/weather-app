@@ -1,12 +1,13 @@
 import { Component } from '@angular/core'
-import { AutocompleteValue } from 'src/app/core/types'
+// import { AutocompleteValue } from 'src/app/core/types'
 import { Store } from '@ngrx/store'
-import { loadWeather, loadedWeather } from 'src/app/state/actions/weather.actions'
+import { loadWeather } from 'src/app/state/actions/weather.actions'
 import { WeatherApiServiceService } from 'src/app/services/weather-api/weather-api.service.service'
-import { WeatherResponseApi } from 'src/app/core/models/weather.model'
-import { normalizeData } from '../../utils/utils'
+// import { WeatherResponseApi } from 'src/app/core/models/weather.model'
+// import { normalizeData } from '../../utils/utils'
 import { Options } from 'ngx-google-places-autocomplete/objects/options/options'
 import { Address } from 'ngx-google-places-autocomplete/objects/address'
+import { LocationModel } from 'src/app/core/models/weather.model'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -35,19 +36,20 @@ export class HeaderComponent {
     })
   }
 
-  saveInformation (value: AutocompleteValue): void {
-    this.store.dispatch(loadWeather())
-    this.weatherApiService.weatherRequest(value).subscribe(({ city, ...rest }: WeatherResponseApi) => {
-      const normalize = normalizeData({
-        city: {
-          ...city,
-          name: value.place
-        },
-        ...rest
-      })
-      this.store.dispatch(loadedWeather({
-        weather: { ...normalize }
-      }))
-    })
+  saveInformation (value: LocationModel): void {
+    console.log(value)
+    this.store.dispatch(loadWeather({ location: value }))
+    // this.weatherApiService.weatherRequest(value).subscribe(({ city, ...rest }: WeatherResponseApi) => {
+    //   const normalize = normalizeData({
+    //     city: {
+    //       ...city,
+    //       name: value.place
+    //     },
+    //     ...rest
+    //   })
+    //   this.store.dispatch(loadedWeather({
+    //     weather: { ...normalize }
+    //   }))
+    // })
   }
 }

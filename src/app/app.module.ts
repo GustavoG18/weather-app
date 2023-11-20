@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms'
 import { LoaderComponent } from './components/loader/loader.component'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete'
+import { EffectsModule } from '@ngrx/effects'
+import { WeatherEffects } from './state/effects/weather.effects'
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete'
     FormsModule,
     GooglePlaceModule,
     StoreModule.forRoot(ROOT_REDUCERS),
-    StoreDevtoolsModule.instrument({ name: 'TEST' })
+    StoreDevtoolsModule.instrument({ name: 'TEST' }),
+    EffectsModule.forRoot([WeatherEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

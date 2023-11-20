@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core'
 import { Loader } from '@googlemaps/js-api-loader'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
-import { WeatherModel, WeatherResponseApi } from 'src/app/core/models/weather.model'
+import { WeatherModel } from 'src/app/core/models/weather.model'
 import { AutocompleteValue } from 'src/app/core/types'
 import { WeatherApiServiceService } from 'src/app/services/weather-api/weather-api.service.service'
-import { loadWeather, loadedWeather } from 'src/app/state/actions/weather.actions'
+// import { loadWeather, loadedWeather } from 'src/app/state/actions/weather.actions'
 import { AppState } from 'src/app/state/app.state'
 import { selectListWeather } from 'src/app/state/selectors/weather.selector'
-import { normalizeData } from 'src/app/utils/utils'
+// import { normalizeData } from 'src/app/utils/utils'
 import { environment } from 'src/environments/environment.dev'
 
 @Component({
@@ -63,18 +63,18 @@ export class HomeComponent implements OnInit {
   }
 
   saveInformation (value: AutocompleteValue): void {
-    this.store.dispatch(loadWeather())
-    this.weatherApiService.weatherRequest(value).subscribe(({ city, ...rest }: WeatherResponseApi) => {
-      const normalize = normalizeData({
-        city: {
-          ...city,
-          name: value.place
-        },
-        ...rest
-      })
-      this.store.dispatch(loadedWeather({
-        weather: { ...normalize }
-      }))
-    })
+    // this.store.dispatch(loadWeather())
+    // this.weatherApiService.weatherRequest(value).subscribe(({ city, ...rest }: WeatherResponseApi) => {
+    //   const normalize = normalizeData({
+    //     city: {
+    //       ...city,
+    //       name: value.place
+    //     },
+    //     ...rest
+    //   })
+    //   this.store.dispatch(loadedWeather({
+    //     weather: { ...normalize }
+    //   }))
+    // })
   }
 }
