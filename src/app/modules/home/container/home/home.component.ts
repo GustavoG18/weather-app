@@ -6,7 +6,7 @@ import { AppState } from 'src/app/state/app.state'
 import { selectListWeather } from 'src/app/state/selectors/weather.selector'
 import { Address } from 'ngx-google-places-autocomplete/objects/address'
 import { Options } from 'ngx-google-places-autocomplete/objects/options/options'
-import { GoogleApiService } from 'src/app/services/google-api.service'
+import { GoogleApiService } from 'src/app/services/google-api/google-api.service'
 
 @Component({
   selector: 'app-home',

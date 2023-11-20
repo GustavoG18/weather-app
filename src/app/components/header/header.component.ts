@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { GoogleApiService } from 'src/app/services/google-api.service'
+import { GoogleApiService } from 'src/app/services/google-api/google-api.service'
 import { Options } from 'ngx-google-places-autocomplete/objects/options/options'
 import { Address } from 'ngx-google-places-autocomplete/objects/address'
 import { Store } from '@ngrx/store'

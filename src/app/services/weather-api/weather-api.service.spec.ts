@@ -39,7 +39,7 @@ describe('WeatherApiServiceService', () => {
     )
 
     const req = httpTestingController.expectOne(
-      `${Endpoints.WEATHER_API}?lat=${testCoords.lat}&lon=${testCoords.lon}&appid=${environment.API_WEATHER_KEY}&units=metric&lang=es`
+      `${Endpoints.WEATHER_API}?lat=${testCoords.lat}&lon=${testCoords.lon}&appid=${environment.API_WEATHER_KEY}&units=metric`
     )
     expect(req.request.method).toEqual('GET')
 

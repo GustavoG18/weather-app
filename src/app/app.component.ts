@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { GoogleApiService } from './services/google-api.service'
+import { GoogleApiService } from './services/google-api/google-api.service'
 
 @Component({
   selector: 'app-root',

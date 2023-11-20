@@ -1,10 +1,10 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core'
 import { environment } from 'src/environments/environment.dev'
 import { Address } from 'ngx-google-places-autocomplete/objects/address'
-import { loadWeather } from '../state/actions/weather.actions'
+import { loadWeather } from '../../state/actions/weather.actions'
 import { Store } from '@ngrx/store'
 import { Options } from 'ngx-google-places-autocomplete/objects/options/options'
-import { AppState } from '../state/app.state'
+import { AppState } from '../../state/app.state'
 
 @Injectable({
   providedIn: 'root'
