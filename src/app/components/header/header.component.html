@@ -1,17 +1,18 @@
 <nav id="navbar-own-style" class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
-    <div id="container-style" class="container-fluid d-flex justify-content-between">
+    <div id="container-style" class="container-fluid d-flex justify-content-between"   *ngIf="weather$ | async as weather">
       <div class="d-flex align-items-center">
         <img class="me-2" src="../../../assets/build/img/png/cloudy-logo.png" alt="cloudy-logo" width="30">
         <h3 class="mb-0 mt-1">WeatherApp</h3>
       </div>
-      <button *ngIf="!firstCall" class="navbar-toggler button-search" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+      <button *ngIf="weather.weatherByDays.length" class="navbar-toggler button-search" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span>
           <img src="../../../assets/build/img/svg/search-icon.svg" alt="search icon">
         </span>
       </button>
-      <div *ngIf="!firstCall" id="navbarToggler" class="input-group collapse navbar-collapse">
+      <div *ngIf="weather.weatherByDays.length" id="navbarToggler" class="input-group collapse navbar-collapse">
         <input
+          placeholder="Type a country or city"
           class="form-control search-input"
           ngx-google-places-autocomplete
           [options]="options"
