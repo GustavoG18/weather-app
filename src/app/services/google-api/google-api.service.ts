@@ -5,6 +5,7 @@ import { loadWeather } from '../../state/actions/weather.actions'
 import { Store } from '@ngrx/store'
 import { Options } from 'ngx-google-places-autocomplete/objects/options/options'
 import { AppState } from '../../state/app.state'
+import { ToastrService } from 'ngx-toastr'
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class GoogleApiService {
     types: ['(regions)']
   })
 
-  constructor (rendererFactory: RendererFactory2, private readonly store: Store<AppState>) {
+  constructor (rendererFactory: RendererFactory2, private readonly store: Store<AppState>, private readonly toast: ToastrService) {
     this.renderer = rendererFactory.createRenderer(null, null)
   }
 
@@ -31,11 +32,15 @@ export class GoogleApiService {
   }
 
   handleChange (address: Address): void {
-    const location = {
-      place: address.name,
-      lat: address.geometry.location.lat(),
-      lon: address.geometry.location.lng()
+    if (Object.keys(address).length === 1) {
+      this.toast.error('Must be select a valid option', 'Error')
+    } else {
+      const location = {
+        place: address.name,
+        lat: address.geometry.location.lat(),
+        lon: address.geometry.location.lng()
+      }
+      this.store.dispatch(loadWeather({ location }))
     }
-    this.store.dispatch(loadWeather({ location }))
   }
 }

@@ -15,6 +15,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete'
 import { EffectsModule } from '@ngrx/effects'
 import { WeatherEffects } from './state/effects/weather.effects'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ToastrModule } from 'ngx-toastr'
 
 @NgModule({
   declarations: [
@@ -32,9 +34,13 @@ import { WeatherEffects } from './state/effects/weather.effects'
     GooglePlaceModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: 'TEST' }),
-    EffectsModule.forRoot([WeatherEffects])
+    EffectsModule.forRoot([WeatherEffects]),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

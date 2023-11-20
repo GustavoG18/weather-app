@@ -24,6 +24,7 @@ import { DisplayIconStatusComponent } from './components/display-icon-status/dis
     FormsModule,
     ChartModule,
     GooglePlaceModule
-  ]
+  ],
+  providers: []
 })
 export class HomeModule { }
