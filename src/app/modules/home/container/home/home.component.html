@@ -1,5 +1,5 @@
 <div *ngIf="weather$ | async as weather">
-  <div class="container" *ngIf="!weather.weatherByDays.length; else initialView" style="margin-top: 15%;">
+  <div class="container container-style" *ngIf="!weather.weatherByDays.length; else initialView">
     <div class="row">
       <div class="d-flex flex-column flex-lg-row">
         <article class="type_style">
@@ -50,7 +50,7 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-10 ms-auto mt-5">
-              <div style="width: 100%; height: 300px; background-color: #8540F5;border-radius: 50px; margin-left: auto;margin-bottom: 20px;"></div>
+              <app-display-icon-status [iconUrl]="iconUrl"></app-display-icon-status>
               <app-map [placeName]="weather.city.name" [lat]="weather.city.coord.lat" [lon]="weather.city.coord.lon"></app-map>
             </div>
           </div>

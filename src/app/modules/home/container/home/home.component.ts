@@ -30,12 +30,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   showAnimation = true
   currentPlace = this.places[0]
+  iconUrl: string = ''
 
   constructor (
     private readonly store: Store<AppState>,
     private readonly googleApiService: GoogleApiService
   ) {
     this.weather$ = this.store.select(selectListWeather)
+    this.weatherSubscription()
     this.options = googleApiService.options
     this.handleChange = (address: Address) =>
       googleApiService.handleChange(address)
@@ -43,6 +45,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit (): void {
     this.startPlaceChangeInterval()
+  }
+
+  weatherSubscription (): void {
+    this.weather$.subscribe(({ weatherByDays }: WeatherModel) => {
+      if (weatherByDays.length > 0) {
+        this.iconUrl = `https://openweathermap.org/img/wn/${weatherByDays[0][0].weather[0].icon}@2x.png`
+      }
+    })
   }
 
   private startPlaceChangeInterval (): void {

@@ -8,13 +8,15 @@ import { FormsModule } from '@angular/forms'
 import { WeatherContainerComponent } from './components/weather-container/weather-container.component'
 import { ChartModule } from 'primeng/chart'
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete'
+import { DisplayIconStatusComponent } from './components/display-icon-status/display-icon-status.component'
 
 @NgModule({
   declarations: [
     HomeComponent,
     MapComponent,
     AccordionComponent,
-    WeatherContainerComponent
+    WeatherContainerComponent,
+    DisplayIconStatusComponent
   ],
   imports: [
     CommonModule,
