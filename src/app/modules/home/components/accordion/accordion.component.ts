@@ -16,7 +16,7 @@ export class AccordionComponent {
   public selectedOption: string = 'Asc'
   public openIndex: number = 0
 
-  constructor (private readonly store: Store<AppState>) {}
+  constructor (public readonly store: Store<AppState>) {}
 
   changeOrder (): void {
     const cloneWeather: WeatherModel = { ...this.weather }

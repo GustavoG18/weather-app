@@ -11,7 +11,7 @@ export class WeatherContainerComponent implements OnChanges {
   public data: any = []
   options: any
 
-  ngOnChanges (changes: SimpleChanges): void {
+  ngOnChanges (_: SimpleChanges): void {
     if (this.weather.length > 0 && this.data.length === 0) {
       this.data = this.weather.map(({ main }) => main.temp)
       const labels = this.weather.map((weather) => `${new Date(weather.dt_txt).getHours()}H`)

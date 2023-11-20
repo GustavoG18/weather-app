@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 p-0">
-      <select class="form-select mb-2 mt-5" [(ngModel)]="selectedOption" (change)="changeOrder()">
+      <select class="form-select mb-2 mt-5" [(ngModel)]="selectedOption" (change)="changeOrder()" [value]="selectedOption">
         <option value="Asc" selected>Ascendent</option>
         <option value="Desc">Descendent</option>
       </select>
