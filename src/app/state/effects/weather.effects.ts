@@ -2,21 +2,22 @@ import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { EMPTY } from 'rxjs'
 import { map, exhaustMap, catchError } from 'rxjs/operators'
-// import { LocationModel } from 'src/app/core/models/weather.model'
-import { WeatherApiServiceService } from 'src/app/services/weather-api/weather-api.service.service'
+import { DataAutocomplete, WeatherActionsTypes, WeatherResponseApi } from 'src/app/core/models/weather.model'
+import { WeatherApiServiceService } from 'src/app/services/weather-api/weather-api.service'
 import { normalizeData } from 'src/app/utils/utils'
-
 @Injectable()
 export class WeatherEffects {
+  constructor (
+    private readonly actions$: Actions,
+    private readonly weatherApiServiceService: WeatherApiServiceService) {}
+
   loadWeather$ = createEffect(() =>
     this.actions$.pipe(
-      ofType('[Weather List] load weather'),
-      exhaustMap(({ location }: any) =>
-        this.weatherApiServiceService.weatherRequest({
-          lat: location.lat,
-          lon: location.lon
-        }).pipe(
-          map(({ city, ...rest }) => {
+      ofType(WeatherActionsTypes.LOAD),
+      exhaustMap(({ location }: DataAutocomplete) => {
+        const { place, ...rest } = location
+        return this.weatherApiServiceService.weatherRequest(rest).pipe(
+          map(({ city, ...rest }: WeatherResponseApi) => {
             const normalize = normalizeData({
               city: {
                 ...city,
@@ -25,15 +26,14 @@ export class WeatherEffects {
               ...rest
             })
             return {
-              type: '[Weather List] loaded weather',
+              type: WeatherActionsTypes.LOADER,
               weather: normalize
             }
           }),
           catchError(() => EMPTY)
         )
+      }
       )
     )
   )
-
-  constructor (private readonly actions$: Actions, private readonly weatherApiServiceService: WeatherApiServiceService) {}
 }

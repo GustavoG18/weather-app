@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
-import { WeatherApiServiceService } from './weather-api.service.service'
+import { WeatherApiServiceService } from './weather-api.service'
 import { Endpoints } from '../../core/endpoints'
 import { environment } from 'src/environments/environment.dev'
 import { expectedData } from 'src/app/test/mocks/weatherResponse.mock'
