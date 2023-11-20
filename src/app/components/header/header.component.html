@@ -1,6 +1,5 @@
 <nav id="navbar-own-style" class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container">
-    <div id="container-style" class="container-fluid d-flex justify-content-between"   *ngIf="weather$ | async as weather">
+    <div id="container-style" class="container d-flex justify-content-between"  *ngIf="weather$ | async as weather">
       <div class="d-flex align-items-center">
         <img class="me-2" src="../../../assets/build/img/png/cloudy-logo.png" alt="cloudy-logo" width="30">
         <h3 class="mb-0 mt-1">WeatherApp</h3>
@@ -21,5 +20,4 @@
         />
       </div>
     </div>
-  </div>
 </nav>
