@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 import { WeatherModel, WeatherResponseApi } from 'src/app/core/models/weather.model'
 import { AutocompleteValue } from 'src/app/core/types'
-import { WeatherApiServiceService } from 'src/app/services/weather-api.service.service'
+import { WeatherApiServiceService } from 'src/app/services/weather-api/weather-api.service.service'
 import { loadWeather, loadedWeather } from 'src/app/state/actions/weather.actions'
 import { AppState } from 'src/app/state/app.state'
 import { selectListWeather } from 'src/app/state/selectors/weather.selector'
@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
 
   private onPlaceChanged (): void {
     const place = this.autocomplete.getPlace()
+    console.log({ place })
     this.saveInformation({
       place: place.name,
       lat: place.geometry.location.lat(),
