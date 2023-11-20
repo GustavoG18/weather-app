@@ -29,10 +29,10 @@
   font-family: monospace;
   font-size: 2rem;
 
-  animation: teclear 1s steps(16), efecto .5s step-end infinite alternate;
+  animation: typing .5s steps(16), animation .5s step-end infinite alternate;
 }
 
-@keyframes teclear {
+@keyframes typing {
   from {
     clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
   }
@@ -41,7 +41,7 @@
   }
 }
 
-@keyframes efecto {
+@keyframes animation {
   50% {
     border-color: transparent;
   }

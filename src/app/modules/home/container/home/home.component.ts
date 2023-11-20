@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 import { WeatherModel } from 'src/app/core/models/weather.model'
 import { AppState } from 'src/app/state/app.state'
 import { selectListWeather } from 'src/app/state/selectors/weather.selector'
-import { Options } from 'ngx-google-places-autocomplete/objects/options/options'
 import { Address } from 'ngx-google-places-autocomplete/objects/address'
+import { Options } from 'ngx-google-places-autocomplete/objects/options/options'
 import { GoogleApiService } from 'src/app/services/google-api.service'
 
 @Component({
@@ -13,16 +13,42 @@ import { GoogleApiService } from 'src/app/services/google-api.service'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  public weather$: Observable<WeatherModel> = new Observable()
-  public firstCall: boolean = true
+export class HomeComponent implements OnInit, OnDestroy {
+  weather$: Observable<WeatherModel> = new Observable()
+  changePlaceInterval!: any
+  options: Options
+  handleChange: (address: Address) => void
 
-  public options!: Options
-  public handleChange!: (address: Address) => void
+  places: string[] = [
+    'Barranquilla',
+    'Barcelona',
+    'Valledupar',
+    'Malambo',
+    'Canada',
+    'Madrid'
+  ]
 
-  places: string[] = ['Barranquilla', 'Barcelona', 'Valledupar', 'Malambo', 'Canada', 'Madrid']
-  showAnimation: boolean = true
-  currentPlace: string = this.places[0]
+  showAnimation = true
+  currentPlace = this.places[0]
+
+  constructor (
+    private readonly store: Store<AppState>,
+    private readonly googleApiService: GoogleApiService
+  ) {
+    this.weather$ = this.store.select(selectListWeather)
+    this.options = googleApiService.options
+    this.handleChange = (address: Address) =>
+      googleApiService.handleChange(address)
+  }
+
+  ngOnInit (): void {
+    this.startPlaceChangeInterval()
+  }
+
+  private startPlaceChangeInterval (): void {
+    this.changePlace()
+    this.changePlaceInterval = setInterval(() => this.changePlace(), 4000)
+  }
 
   changePlace (): void {
     const randomIndex = Math.floor(Math.random() * this.places.length)
@@ -32,27 +58,12 @@ export class HomeComponent implements OnInit {
 
   resetAnimation (): void {
     this.showAnimation = false
-    setTimeout(() => { this.showAnimation = true })
-  }
-
-  constructor (private readonly store: Store<AppState>, private readonly googleApiService: GoogleApiService) {
-    this.options = googleApiService.options
-    this.handleChange = (address: Address) => googleApiService.handleChange(address)
-  }
-
-  ngOnInit (): void {
-    this.weather$ = this.store.select(selectListWeather)
-    this.weather$.subscribe((response: WeatherModel) => {
-      console.log({ response })
-      this.isFirstCall(response)
+    setTimeout(() => {
+      this.showAnimation = true
     })
-    this.changePlace()
-    setInterval(() => this.changePlace(), 5000)
   }
 
-  isFirstCall (currentWeather: WeatherModel): void {
-    if (currentWeather.weatherByDays.length > 0) {
-      this.firstCall = false
-    }
+  ngOnDestroy (): void {
+    clearInterval(this.changePlaceInterval)
   }
 }
