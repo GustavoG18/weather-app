@@ -11,7 +11,14 @@
         </span>
       </button>
       <div id="navbarToggler" class="input-group collapse navbar-collapse">
-        <input id="autocomplete-input" type="text" class="form-control search-input" placeholder="Type a country or city" aria-label="place to search">
+        <!-- <input id="autocomplete-input" type="text" class="form-control search-input" placeholder="Type a country or city" aria-label="place to search"> -->
+        <input
+          ngx-google-places-autocomplete
+          class="input-group collapse navbar-collapse"
+          [options]="options"
+          #placesRef="ngx-places"
+          (onAddressChange)="onPlaceChanged($event)"
+        />
       </div>
     </div>
   </div>

@@ -1,28 +1,22 @@
 import { Component } from '@angular/core'
-import { Loader } from '@googlemaps/js-api-loader'
-import { environment } from 'src/environments/environment.dev'
 import { AutocompleteValue } from 'src/app/core/types'
 import { Store } from '@ngrx/store'
 import { loadWeather, loadedWeather } from 'src/app/state/actions/weather.actions'
-import { WeatherApiServiceService } from 'src/app/services/weather-api.service.service'
+import { WeatherApiServiceService } from 'src/app/services/weather-api/weather-api.service.service'
 import { WeatherResponseApi } from 'src/app/core/models/weather.model'
 import { normalizeData } from '../../utils/utils'
+import { Options } from 'ngx-google-places-autocomplete/objects/options/options'
+import { Address } from 'ngx-google-places-autocomplete/objects/address'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  private autocomplete: any
-
-  loader = new Loader({
-    apiKey: environment.API_KEY_MAP,
-    version: 'weekly'
-  })
-
-  optionsAutocomplete = {
+  public autocomplete: any
+  options: Options = new Options({
     types: ['(regions)']
-  }
+  })
 
   constructor (
     private readonly weatherApiService: WeatherApiServiceService,
@@ -30,17 +24,14 @@ export class HeaderComponent {
   ) {}
 
   ngAfterViewInit (): void {
-    const input = document.getElementById('autocomplete-input') as HTMLInputElement
-    this.autocomplete = new google.maps.places.Autocomplete(input, this.optionsAutocomplete)
-    this.autocomplete.addListener('place_changed', () => this.onPlaceChanged())
   }
 
-  private onPlaceChanged (): void {
-    const place = this.autocomplete.getPlace()
+  onPlaceChanged (address: Address): void {
+    console.log({ address })
     this.saveInformation({
-      place: place.name,
-      lat: place.geometry.location.lat(),
-      lon: place.geometry.location.lng()
+      place: address.name,
+      lat: address.geometry.location.lat(),
+      lon: address.geometry.location.lng()
     })
   }
 
