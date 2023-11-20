@@ -12,7 +12,7 @@ Entre sus funcionalidad esta:
 Para correr este proyecto:
   - se debe clonar el repositorio, haciendo git clone https://github.com/GustavoG18/weather-app
   - npm install
-  - setear las variables de environment, en el environment.ts
+  - setear las variables de environment, en el environment.ts [Subire el archivo de environment por los proximos 7 dias para hacer mas facil las pruebas, luego sera eliminado, junto con sus keys.]
     - API_WEATHER_KEY: key para hacer peticiones a la API de [openweathermap.org](https://openweathermap.org/)
     - API_KEY_MAP: key para usar la API places de google con la cual creamos un autocomplete para obtener los nombres de las ciudades y paises [google cloud console](https://console.cloud.google.com/)
   - npm start
@@ -34,3 +34,7 @@ Se diseño una maqueta de la interfaz de la aplicativo en figma.
 ## URL Deploy Application
 
 Puede visitar la version de la aplicacion desplegada: [weather-app.com](https://weather-app-4da87.web.app/)
+
+## Data Openweathermap
+
+Cabe resaltar que al app no siempre me entrega el mismo numero de resultados, por lo tanto las graficas pueden variar en un mismo dia a lo largo del dia, lo que provoca que los dias entregados por la app tambien varien. Esto debido que el nivel de subscripcion gratuito solo me permite tener una key para poder manejar la api de 5 dias, cada 3 horas del servidor y los datos son inestable debido a la condicion de cada 3 horas.
