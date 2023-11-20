@@ -1,25 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="col-6 d-flex flex-column">
+    <div class="col-6 d-flex flex-column p-0">
       <div class="d-flex flex-row align-items-center">
-        <img class="me-2" src="../../../../../assets/build/img/png/cloudy-logo.png" alt="img" style="width: 40px !important;"/>
+        <img class="me-2 img-weather" src="../../../../../assets/build/img/png/cloudy-logo.png" alt="img"/>
         <div class="d-flex flex-row">
-          <p style="font-size: 2rem; margin: 0;">{{weather[0].main.temp}}</p>
-          <p style="font-size: 1rem; vertical-align: super;">°C</p>
+          <p class="font-size-2">{{weather[0].main.temp}}</p>
+          <p class="font-size-1">°C</p>
         </div>
       </div>
       <div class="d-flex flex-column">
-        <p style="font-size: 0.8rem; margin-bottom: 0;">Humedad: {{weather[0].main.humidity}}%</p>
+        <p class="font-size-0-8">Humedad: {{weather[0].main.humidity}}%</p>
         <div class="d-flex flex-row">
-          <p style="font-size: 0.8rem; margin-bottom: 0;">Sensacion termica: {{weather[0].main.feels_like}}</p>
-          <p style="font-size: 0.5rem; vertical-align: super; margin-bottom: 0;">°C</p>
+          <p class="font-size-0-8">Sensacion termica: {{weather[0].main.feels_like}}</p>
+          <p class="font-size-0-5">°C</p>
         </div>
-        <p style="font-size: 0.8rem; margin-bottom: 0;">P. Atmosferica: {{weather[0].main.pressure}} hPa</p>
+        <p class="font-size-0-8">P. Atmosferica: {{weather[0].main.pressure}} hPa</p>
       </div>
     </div>
-    <div class="col-6 d-flex flex-column">
-      <p style="font-size: 2rem;text-align: end;margin-bottom: 0;">Clima</p>
-      <p style="font-size: 0.8rem;text-align: end;margin-bottom: 0;">{{weather[0].weather[0].description}}</p>
+    <div class="col-6 d-flex flex-column p-0">
+      <p class="font-size-2 text-end">Clima</p>
+      <p class="font-size-0-8 text-end">{{weather[0].weather[0].description}}</p>
     </div>
   </div>
   <div class="row mt-2">

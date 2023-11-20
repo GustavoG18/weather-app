@@ -95,3 +95,9 @@ export interface Wind {
   gust: number
   speed: number
 }
+
+export interface LocationModel {
+  place: string
+  lat: number
+  lon: number
+}
