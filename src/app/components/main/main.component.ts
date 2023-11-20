@@ -10,7 +10,7 @@ import { selectLoading } from 'src/app/state/selectors/weather.selector'
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  loader$: Observable<any> = new Observable()
+  loader$: Observable<boolean> = new Observable()
 
   constructor (private readonly store: Store<AppState>) {}
 

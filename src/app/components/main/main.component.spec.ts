@@ -28,7 +28,7 @@ describe('MainComponent', () => {
         {
           provide: Store,
           useValue: {
-            select: (selector: any) => of(false)
+            select: (selector: boolean) => of(false)
           }
         }
       ],

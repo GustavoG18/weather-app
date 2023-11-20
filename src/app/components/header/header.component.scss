@@ -1,8 +1,10 @@
+@use '../../../assets/build/scss/colors.scss' as colors;
+
 #navbar-own-style {
   padding: 15px 0px;
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15), inset 0 -1px 0 rgba(255,255,255,0.15);
-  background-color: #8540F5 !important;
-  color: #FFFFFF
+  background-color: colors.$primary !important;
+  color: colors.$white
 }
 
 #container-style {
@@ -25,7 +27,7 @@
 }
 
 .button-search {
-  background-color: white;
+  background-color: colors.$white;
   &:focus {
     box-shadow: none !important;
   }
