@@ -39,4 +39,3 @@ Puede visitar la version de la aplicacion desplegada: [weather-app.com](https://
 
 Cabe resaltar que al app no siempre me entrega el mismo numero de resultados, por lo tanto las graficas pueden variar en un mismo dia a lo largo del dia, lo que provoca que los dias entregados por la app tambien varien. Esto debido que el nivel de subscripcion gratuito solo me permite tener una key para poder manejar la api de 5 dias, cada 3 horas del servidor y los datos son inestable debido a la condicion de cada 3 horas.
 
-### Important: A veces se puede necesitar que la aplicacion se recargue si el script de google no se cargo de manera correcta.
