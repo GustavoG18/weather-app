@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { HeaderComponent } from './header.component'
 import { WeatherApiServiceService } from 'src/app/services/weather-api.service.service'
 import { Store } from '@ngrx/store'
-import { googleTesting } from '../../test/mock/maps.googleapis.com-maps-api'
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent
@@ -28,8 +27,6 @@ describe('HeaderComponent', () => {
       ]
     })
       .compileComponents()
-
-    window.google = googleTesting
 
     fixture = TestBed.createComponent(HeaderComponent)
     component = fixture.componentInstance

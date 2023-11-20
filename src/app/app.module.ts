@@ -12,6 +12,7 @@ import { ROOT_REDUCERS } from './state/app.state'
 import { FormsModule } from '@angular/forms'
 import { LoaderComponent } from './components/loader/loader.component'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete'
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    GooglePlaceModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: 'TEST' })
   ],

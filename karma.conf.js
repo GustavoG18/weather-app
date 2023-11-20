@@ -31,9 +31,6 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
-    files: [
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyC15IN7p70tqBAajiiDiXaNgRtbUWURIA8&libraries=places'
-    ],
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
