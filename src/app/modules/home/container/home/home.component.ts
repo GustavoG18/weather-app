@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core'
-import { Loader } from '@googlemaps/js-api-loader'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 import { WeatherModel } from 'src/app/core/models/weather.model'
-import { AutocompleteValue } from 'src/app/core/types'
-import { WeatherApiServiceService } from 'src/app/services/weather-api/weather-api.service.service'
-// import { loadWeather, loadedWeather } from 'src/app/state/actions/weather.actions'
 import { AppState } from 'src/app/state/app.state'
 import { selectListWeather } from 'src/app/state/selectors/weather.selector'
-// import { normalizeData } from 'src/app/utils/utils'
-import { environment } from 'src/environments/environment.dev'
+import { Options } from 'ngx-google-places-autocomplete/objects/options/options'
+import { Address } from 'ngx-google-places-autocomplete/objects/address'
+import { GoogleApiService } from 'src/app/services/google-api.service'
 
 @Component({
   selector: 'app-home',
@@ -19,23 +16,28 @@ import { environment } from 'src/environments/environment.dev'
 export class HomeComponent implements OnInit {
   public weather$: Observable<WeatherModel> = new Observable()
   public firstCall: boolean = true
-  private autocomplete: any
 
-  loader = new Loader({
-    apiKey: environment.API_KEY_MAP,
-    version: 'weekly'
-  })
+  public options!: Options
+  public handleChange!: (address: Address) => void
 
-  optionsAutocomplete = {
-    types: ['(regions)']
+  places: string[] = ['Barranquilla', 'Barcelona', 'Valledupar', 'Malambo', 'Canada', 'Madrid']
+  showAnimation: boolean = true
+  currentPlace: string = this.places[0]
+
+  changePlace (): void {
+    const randomIndex = Math.floor(Math.random() * this.places.length)
+    this.currentPlace = this.places[randomIndex]
+    this.resetAnimation()
   }
 
-  constructor (private readonly store: Store<AppState>, private readonly weatherApiService: WeatherApiServiceService) {}
+  resetAnimation (): void {
+    this.showAnimation = false
+    setTimeout(() => { this.showAnimation = true })
+  }
 
-  ngAfterViewInit (): void {
-    const input = document.getElementById('autocomplete-input-main') as HTMLInputElement
-    this.autocomplete = new google.maps.places.Autocomplete(input, this.optionsAutocomplete)
-    this.autocomplete.addListener('place_changed', () => this.onPlaceChanged())
+  constructor (private readonly store: Store<AppState>, private readonly googleApiService: GoogleApiService) {
+    this.options = googleApiService.options
+    this.handleChange = (address: Address) => googleApiService.handleChange(address)
   }
 
   ngOnInit (): void {
@@ -44,37 +46,13 @@ export class HomeComponent implements OnInit {
       console.log({ response })
       this.isFirstCall(response)
     })
+    this.changePlace()
+    setInterval(() => this.changePlace(), 5000)
   }
 
   isFirstCall (currentWeather: WeatherModel): void {
     if (currentWeather.weatherByDays.length > 0) {
       this.firstCall = false
     }
-  }
-
-  private onPlaceChanged (): void {
-    const place = this.autocomplete.getPlace()
-    console.log({ place })
-    this.saveInformation({
-      place: place.name,
-      lat: place.geometry.location.lat(),
-      lon: place.geometry.location.lng()
-    })
-  }
-
-  saveInformation (value: AutocompleteValue): void {
-    // this.store.dispatch(loadWeather())
-    // this.weatherApiService.weatherRequest(value).subscribe(({ city, ...rest }: WeatherResponseApi) => {
-    //   const normalize = normalizeData({
-    //     city: {
-    //       ...city,
-    //       name: value.place
-    //     },
-    //     ...rest
-    //   })
-    //   this.store.dispatch(loadedWeather({
-    //     weather: { ...normalize }
-    //   }))
-    // })
   }
 }

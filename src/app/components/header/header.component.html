@@ -5,19 +5,18 @@
         <img class="me-2" src="../../../assets/build/img/png/cloudy-logo.png" alt="cloudy-logo" width="30">
         <h3 class="mb-0 mt-1">WeatherApp</h3>
       </div>
-      <button class="navbar-toggler button-search" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+      <button *ngIf="!firstCall" class="navbar-toggler button-search" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span>
           <img src="../../../assets/build/img/svg/search-icon.svg" alt="search icon">
         </span>
       </button>
-      <div id="navbarToggler" class="input-group collapse navbar-collapse">
-        <!-- <input id="autocomplete-input" type="text" class="form-control search-input" placeholder="Type a country or city" aria-label="place to search"> -->
+      <div *ngIf="!firstCall" id="navbarToggler" class="input-group collapse navbar-collapse">
         <input
+          class="form-control search-input"
           ngx-google-places-autocomplete
-          class="input-group collapse navbar-collapse"
           [options]="options"
           #placesRef="ngx-places"
-          (onAddressChange)="onPlaceChanged($event)"
+          (onAddressChange)="handleChange($event)"
         />
       </div>
     </div>

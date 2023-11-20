@@ -96,8 +96,17 @@ export interface Wind {
   speed: number
 }
 
+export interface DataAutocomplete {
+  location: LocationModel
+}
+
 export interface LocationModel {
   place: string
   lat: number
   lon: number
+}
+
+export enum WeatherActionsTypes {
+  LOAD = '[Weather List] load weather',
+  LOADER = '[Weather List] loaded weather'
 }

@@ -7,6 +7,7 @@ import { AccordionComponent } from './components/accordion/accordion.component'
 import { FormsModule } from '@angular/forms'
 import { WeatherContainerComponent } from './components/weather-container/weather-container.component'
 import { ChartModule } from 'primeng/chart'
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ChartModule } from 'primeng/chart'
     CommonModule,
     HomeRoutingModule,
     FormsModule,
-    ChartModule
+    ChartModule,
+    GooglePlaceModule
   ]
 })
 export class HomeModule { }

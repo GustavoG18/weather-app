@@ -1,12 +1,23 @@
 <div class="container" *ngIf="firstCall; else initialView" style="margin-top: 20%;">
   <div class="row">
-    <div class="col-12">
-      <h2>Busca una ciudad o un pais</h2>
+    <div class="d-flex flex-row">
+      <article class="type_style">
+        Try with:
+      </article>
+      <article class="typing_effect" *ngIf="showAnimation">
+        {{currentPlace}}
+      </article>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <input id="autocomplete-input-main" type="text" class="form-control search-input" placeholder="Type a country or city" aria-label="place to search">
+      <input
+        class="form-control search-input"
+        ngx-google-places-autocomplete
+        [options]="options"
+        #placesRef="ngx-places"
+        (onAddressChange)="handleChange($event)"
+      />
     </div>
   </div>
 </div>

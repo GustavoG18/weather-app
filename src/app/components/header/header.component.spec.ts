@@ -1,7 +1,7 @@
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { HeaderComponent } from './header.component'
-import { WeatherApiServiceService } from 'src/app/services/weather-api/weather-api.service.service'
+import { WeatherApiServiceService } from 'src/app/services/weather-api/weather-api.service'
 import { Store } from '@ngrx/store'
 
 xdescribe('HeaderComponent', () => {

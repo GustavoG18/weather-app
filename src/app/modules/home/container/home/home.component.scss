@@ -13,3 +13,36 @@
 .information-container {
   height: 100%;
 }
+
+.type_style {
+  margin-bottom: 10px;
+  margin-right: 8px;
+  width: max-content;
+  font-family: monospace;
+  font-size: 2rem;
+}
+
+.typing_effect {
+  margin-bottom: 10px;
+  width: max-content;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2rem;
+
+  animation: teclear 1s steps(16), efecto .5s step-end infinite alternate;
+}
+
+@keyframes teclear {
+  from {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes efecto {
+  50% {
+    border-color: transparent;
+  }
+}
